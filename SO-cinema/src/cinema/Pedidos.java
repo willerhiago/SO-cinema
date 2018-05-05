@@ -3,7 +3,7 @@ package cinema;
 public class Pedidos {
 	
 	final int QNTPEDIDOS;
-	private Ingresso[] pedidos;
+	private Pedido[] pedidos;
 	
 	
 	

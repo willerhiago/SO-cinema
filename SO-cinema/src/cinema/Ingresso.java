@@ -2,69 +2,46 @@ package cinema;
 
 public class Ingresso {
 	
-	private int tipo;
-	private int fileira;
-	private int cadeira;
-	private int tempo;
+	private String fileira;
+	private String cadeira;
+	private boolean vendido;
 	
-	
-	
-	
-	public Ingresso(int tipo, int fileira, int cadeira, int tempo) {
-		this.tipo = tipo;
+	public Ingresso(String fileira, String cadeira) {
 		this.fileira = fileira;
 		this.cadeira = cadeira;
-		this.tempo = tempo;
+		this.vendido = vendido;
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public String getPoltrona() {
+		return "Poltrona" + getFileira()+" "+ " " + getCadeira(); 
+	}
 	
 	//-------------Getters and Setters
-	
-	public int getTipo() {
-		return tipo;
-	}
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-	public int getFileira() {
+	public String getFileira() {
 		return fileira;
 	}
-	public void setFileira(int fileira) {
+
+	public void setFileira(String fileira) {
 		this.fileira = fileira;
 	}
-	public int getCadeira() {
+
+	public String getCadeira() {
 		return cadeira;
 	}
-	public void setCadeira(int cadeira) {
+
+	public void setCadeira(String cadeira) {
 		this.cadeira = cadeira;
 	}
-	public int getTempo() {
-		return tempo;
+
+	public boolean isVendido() {
+		return vendido;
 	}
-	public void setTempo(int tempo) {
-		this.tempo = tempo;
+
+	public void setVendido(boolean vendido) {
+		this.vendido = vendido;
 	}
+
+	
 }

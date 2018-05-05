@@ -6,11 +6,16 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Arquivo {
-
+	
+	private int qntFilas;
+	private int qntCadeirasPorFila;
+	
+	
     public String[][] ler(String nome_arquivo)
            throws IOException{
 
         String[][] assentos;
+        
 
         if(nome_arquivo.equals("sala.txt") || nome_arquivo.equals("pedidos.txt")){
 
@@ -27,7 +32,9 @@ public class Arquivo {
                 i = 0;
 
             assentos = new String[tam_filas][tam_poltrona];       // Cria matriz com dimensões para as poltronas/pedidos
-
+            this.qntFilas = tam_filas;
+            this.qntCadeirasPorFila = tam_poltrona;
+            
             while (arquivo.getFilePointer() < arquivo.length()) {       // Percorre o arquivo inteiro
                 int j = 0;
 
@@ -78,5 +85,13 @@ public class Arquivo {
             System.out.println("Só trabalhamos com o parametro ${tipo_dado} de nome \'VENDIDO\' e ${nome_arquivo} de nome \'vendidos.txt\' ou ${tipo_dado} de nome \'NEGADO\' e ${nome_arquivo} de nome \'negados.txt\'");
         }
     }
+
+	public int getQntFilas() {
+		return qntFilas;
+	}
+
+	public int getQntCadeirasPorFila() {
+		return qntCadeirasPorFila;
+	}
 
 }
