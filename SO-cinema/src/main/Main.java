@@ -15,14 +15,16 @@ public class Main {
 			while(!venda.getPedidos().loteVazio()){
 				venda.novoPedido();
 			}
-			System.out.println("\n\n---------------------Pedidos aprovados-------------------\n\n");
+			System.out.println("\n\n---------------------PEDIDOS APROVADOS---------------------\n\n");
 			for(Pedido pedido :  venda.getPedidosAprovados()) {
 				System.out.println(pedido.toString());
 			}
-			System.out.println("\n\n---------------------Pedidos negados-------------------\n\n");
+			System.out.println("\n\n---------------------PEDIDOS NEGADOS-----------------------\n\n");
 			for(Pedido pedido :  venda.getPedidosNegados()) {
 				System.out.println(pedido.toString());
 			}
+			System.out.println("\n\n----------------------------SALA---------------------------\n\n");
+			venda.getSala().escreverSala();
 			
 		} catch (NumberFormatException e) {	
 			e.printStackTrace();
