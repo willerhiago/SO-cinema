@@ -2,11 +2,11 @@ package cinema;
 
 public class Ingresso {
 	
-	private String fileira;
-	private String cadeira;
+	private int fileira;
+	private int cadeira;
 	private boolean vendido = false;
 	
-	public Ingresso(String fileira, String cadeira) {
+	public Ingresso(int fileira, int cadeira) {
 		this.fileira = fileira;
 		this.cadeira = cadeira;
 	}
@@ -22,19 +22,19 @@ public class Ingresso {
 	}
 	
 	//-------------Getters and Setters
-	public String getFileira() {
+	public int getFileira() {
 		return fileira;
 	}
 
-	public void setFileira(String fileira) {
+	public void setFileira(int fileira) {
 		this.fileira = fileira;
 	}
 
-	public String getCadeira() {
+	public int getCadeira() {
 		return cadeira;
 	}
 
-	public void setCadeira(String cadeira) {
+	public void setCadeira(int cadeira) {
 		this.cadeira = cadeira;
 	}
 

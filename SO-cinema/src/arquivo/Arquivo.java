@@ -43,17 +43,18 @@ public class Arquivo {
 
     //------------------------------Métodos Pedidos
 
-    public void lerPedidos() throws NumberFormatException, IOException {
+    public ArrayList<Pedido> lerPedidos() throws NumberFormatException, IOException {
         this.abreArquivo("pedidos.txt");
         qntPedidos = Integer.parseInt(entrada.readLine());
 
         while(entrada.available() != 0){
         	String[] linha = entrada.readLine().split(" ");
-        	Pedido pedido = new Pedido(Integer.parseInt(linha[0]),linha[1],linha[2],Integer.parseInt(linha[3]));
+        	Pedido pedido = new Pedido(Integer.parseInt(linha[0]),Integer.parseInt(linha[1]),Integer.parseInt(linha[2]),Integer.parseInt(linha[3]));
         	pedidos.add(pedido);
         }
 
         this.fechaArquivo();
+        return this.pedidos;
  }
     public void escreverPedidos() {
         if(qntPedidos == 0) System.out.println("Nao existe pedidos!");
@@ -73,7 +74,7 @@ public class Arquivo {
 	}    
    
 	//---------------------------Métodos Sala
-    public void lerSala() throws IOException{
+    public String[][] lerSala() throws IOException{
 
          String nome_arquivo = "sala.txt";
          RandomAccessFile arquivo = new RandomAccessFile(nome_arquivo, "r"); // Instancia arquivo
@@ -99,7 +100,7 @@ public class Arquivo {
              i++;
          }
     
-        
+        return this.sala;
      }
     
     public String[][] retornaSala() {

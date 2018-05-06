@@ -13,8 +13,7 @@ public class Sala {
 	
 	public Sala() throws IOException {
 		Arquivo arq = new Arquivo();
-		arq.lerSala();
-		this.poltronas = arq.retornaSala();
+		this.poltronas = arq.lerSala();;
 		this.qntFilas = arq.getQntFilas();
 		this.cadeirasPorFila = arq.getQntCadeirasPorFila();
 	}
@@ -22,10 +21,29 @@ public class Sala {
 	
 	public boolean consultaAssento(int fileira, int cadeira) {
 		boolean result = false;
-		if(this.poltronas[fileira][cadeira] == "1") result = true;
+		if(this.poltronas[fileira][cadeira].equals("1")) result = true;
 		return result;
 		
 	}
+	
+	public boolean reservaAssento(int fileira, int cadeira){
+		boolean result = false;
+		if(consultaAssento(fileira,cadeira)) {
+			this.poltronas[fileira][cadeira] = "X";
+			result = true;
+		}
+		return result;
+	}
+	
+	public boolean retiraReserva(int fileira, int cadeira) {
+		boolean result = false;
+		if(!consultaAssento(fileira,cadeira)) {
+			this.poltronas[fileira][cadeira] = "1";
+			result = true;
+		}
+		return result;
+	}
+	
 	
 	public void escreverSala() {
         if(qntFilas == 0) System.out.println("Nao existe sala!");

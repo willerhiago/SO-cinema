@@ -1,12 +1,19 @@
 package cinema;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import arquivo.Arquivo;
+
 public class LotePedidos {
 	
 	private int qntPedidos;
-	private Pedido[] pedidos;
+	private ArrayList<Pedido> pedidos;
 	
-	public LotePedidos(int qntPedidos){
-		this.qntPedidos = qntPedidos;
+	public LotePedidos() throws NumberFormatException, IOException{
+		Arquivo arq = new Arquivo();
+		this.pedidos = arq.lerPedidos();
+		this.qntPedidos = arq.getQntPedidos();
 	}
 	
 	public void escreverPedidos() {
@@ -17,6 +24,16 @@ public class LotePedidos {
             }
         }
     }
+	
+	public Pedido novoPedido() {
+		Pedido pedido = new Pedido();
+		pedido = pedidos.remove(0);
+		return pedido;
+	}
+	
+	public boolean loteVazio(){
+		return pedidos.isEmpty();
+	}
 
 	//-------------------Getters
 	
@@ -24,7 +41,7 @@ public class LotePedidos {
 		return qntPedidos;
 	}
 
-	public Pedido[] getPedidos() {
+	public ArrayList<Pedido> getPedidos() {
 		return pedidos;
 	}
 	
