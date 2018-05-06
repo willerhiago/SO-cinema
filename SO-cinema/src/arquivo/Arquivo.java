@@ -26,8 +26,7 @@ public class Arquivo {
 	//-------------------------------------MÃ©todos sobre arquivo
     private void abreArquivo(String nomeArquivo) throws FileNotFoundException {
         if(nomeArquivo == null || nomeArquivo == "") {
-            this.arqEntrada = new FileInputStream("lavanderia");
-            this.arquivo = nomeArquivo;
+           System.out.println("Nome de arquivo inválido!");
         }
         else {
             this.arqEntrada = new FileInputStream(nomeArquivo);
