@@ -4,18 +4,21 @@ public class Ingresso {
 	
 	private String fileira;
 	private String cadeira;
-	private boolean vendido;
+	private boolean vendido = false;
 	
 	public Ingresso(String fileira, String cadeira) {
 		this.fileira = fileira;
 		this.cadeira = cadeira;
-		this.vendido = vendido;
 	}
 	
 	
 	
 	public String getPoltrona() {
-		return "Poltrona" + getFileira()+" "+ " " + getCadeira(); 
+		return "Poltrona: " + getFileira()+" "+ " " + getCadeira(); 
+	}
+	
+	public void vendido() {
+		this.vendido = true;
 	}
 	
 	//-------------Getters and Setters

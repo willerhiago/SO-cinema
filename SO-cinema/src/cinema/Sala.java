@@ -13,7 +13,8 @@ public class Sala {
 	
 	public Sala() throws IOException {
 		Arquivo arq = new Arquivo();
-		this.poltronas = arq.ler("sala.txt");
+		arq.lerSala();
+		this.poltronas = arq.retornaSala();
 		this.qntFilas = arq.getQntFilas();
 		this.cadeirasPorFila = arq.getQntCadeirasPorFila();
 	}
@@ -26,12 +27,32 @@ public class Sala {
 		
 	}
 	
-	/*
- 
-	for(int i=0; i < qntFilas; i++){
-		for(int j=0; j < cadeirasPorFila; j++){
-			if(this.poltronas[i][j] == "1")result = true;
-		}
+	public void escreverSala() {
+        if(qntFilas == 0) System.out.println("Nao existe sala!");
+        else {
+        	
+                for(String[] assentos2 : poltronas){
+                    for(String assento : assentos2){
+                        System.out.print(assento + "");
+                    }
+                    System.out.println();
+                }
+        }
+    }
+
+	//------------------------Getters 
+	public int getQntFilas() {
+		return qntFilas;
 	}
-	*/
+
+
+	public int getCadeirasPorFila() {
+		return cadeirasPorFila;
+	}
+
+
+	public String[][] getPoltronas() {
+		return poltronas;
+	}
+	
 }

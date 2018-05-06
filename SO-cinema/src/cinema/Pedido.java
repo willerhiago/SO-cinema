@@ -6,7 +6,7 @@ public class Pedido {
 	private Ingresso ingresso;
 	private int tempo;
 	
-	Pedido(int tipo, String fileira, String cadeira, int tempo){
+	public Pedido(int tipo, String fileira, String cadeira, int tempo){
 		this.tipo = tipo;
 		this.tempo = tempo;
 		this.ingresso = new Ingresso(fileira,cadeira);
@@ -27,5 +27,9 @@ public class Pedido {
 		return result;
 	}
 	
+	public String toString(){
+		return "Tipo: " + this.tipo + " " + ingresso.getPoltrona() +" Tempo: "+this.tempo;
+		
+	}	
 	
 }
