@@ -39,15 +39,10 @@ public class SistemaVenda {
 						aprovado = true;
 					}
 				}
-				if(aprovado) {
-					pedido.pedidoNegado(fileira, cadeira); //  coloca apenas que o ingresso não foi vendido
-					pedidosAprovados.add(pedido);
-					sala.retiraReserva(fileira, cadeira); 
-				}
-				else {
-					pedido.pedidoNegado(fileira, cadeira);
+					pedido.pedidoNegado(fileira, cadeira); 
 					pedidosNegados.add(pedido);
-				}
+					sala.retiraReserva(fileira, cadeira); 
+				
 				
 				break;
 				
@@ -60,7 +55,7 @@ public class SistemaVenda {
 					}
 				}
 				if(aprovado) {
-					pedido.pedidoAprovado(fileira, cadeira); //  coloca apenas que o ingresso não foi vendido
+					pedido.pedidoAprovado(fileira, cadeira); 
 					pedidosAprovados.add(pedido);
 				}else{
 					pedido.pedidoNegado(fileira, cadeira); 
