@@ -3,7 +3,9 @@ package arquivo;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
@@ -127,5 +129,16 @@ public class Arquivo {
 	public int getQntCadeirasPorFila() {
 		return qntCadeirasPorFila;
 	}
+	//-----------------------Salvar Arquivo
+	
+	public void salvarArquivo(String nomeArq,ArrayList<Pedido> salvar) throws IOException{
+        FileWriter arq = new FileWriter(nomeArq + ".txt");
+        PrintWriter gravarArq = new PrintWriter(arq);
+        for(Pedido p : salvar) {
+            gravarArq.println(p.toString());
+        }
+        arq.close();
+        gravarArq.close();
+    }
 }
 

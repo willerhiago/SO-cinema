@@ -15,7 +15,7 @@ public class Cliente extends Thread{
 			try {
 				venda.novoPedido();
 				venda.getPedidos();
-				System.out.println(this.getName());
+				//System.out.println(this.getName());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
