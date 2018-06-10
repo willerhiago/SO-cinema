@@ -17,56 +17,53 @@ public class SistemaVenda {
 		pedidosNegados = new ArrayList<Pedido>();
 	}
 		
-	private void vendeIngresso(Pedido pedido){
-		
-		int fileira = pedido.getIngresso().getFileira();
-		int cadeira = pedido.getIngresso().getCadeira();
-		
-		boolean result = false;
-		boolean aprovado = false;
-		
-		switch(pedido.getTipo()) {
-		
-			case 1: //----------------------------------------Somente consulta
-				sala.consultaAssento(fileira,cadeira); 
-				break;
-				
-			case 2: //---------------------------------  Consulta, Reserva e não compra
-				
-				while(pedido.executaTempo() <  pedido.getTempo()) { // loop no tempo do pedido tentando reservar até conseguir
+	private  void  vendeIngresso(Pedido pedido) throws InterruptedException{
+		//synchronized(this) {
+			int fileira = pedido.getIngresso().getFileira();
+			int cadeira = pedido.getIngresso().getCadeira();
+			
+			boolean result = false;
+			boolean aprovado = false;
+			
+			switch(pedido.getTipo()) {
+			
+				case 1: //----------------------------------------Somente consulta
+					sala.consultaAssento(fileira,cadeira); 
+					break;
+					
+				case 2: //---------------------------------  Consulta, Reserva e não compra
+					
 					result = sala.reservaAssento(fileira, cadeira);
-					if(result) {
-						aprovado = true;
-					}
-				}
+					Thread.currentThread().sleep(pedido.getTempo());
 					pedido.pedidoNegado(fileira, cadeira); 
 					pedidosNegados.add(pedido);
 					sala.retiraReserva(fileira, cadeira); 
-				
-				
-				break;
-				
-			case 3: //-------------------------------------- Consulta, Reserva e compra
-				
-				while(pedido.executaTempo() <  pedido.getTempo()) { // loop no tempo do pedido tentando reservar até conseguir
+					
+					
+					break;
+					
+				case 3: //-------------------------------------- Consulta, Reserva e compra
+					
 					result = sala.reservaAssento(fileira, cadeira);
+					Thread.currentThread().sleep(pedido.getTempo());
 					if(result) {
 						aprovado = true;
 					}
-				}
-				if(aprovado) {
-					pedido.pedidoAprovado(fileira, cadeira); 
-					pedidosAprovados.add(pedido);
-				}else{
-					pedido.pedidoNegado(fileira, cadeira); 
-					pedidosNegados.add(pedido);
-				}
-				break;
-		}
+					if(aprovado) {
+						pedido.pedidoAprovado(fileira, cadeira); 
+						pedidosAprovados.add(pedido);
+					}else{
+						pedido.pedidoNegado(fileira, cadeira); 
+						pedidosNegados.add(pedido);
+					}
+					break;
+			}
+		//}
+		
 		
 	}
 	
-	public void novoPedido() {
+	public void novoPedido() throws InterruptedException {
 		if(!pedidos.loteVazio()) vendeIngresso(pedidos.novoPedido());
 		else System.out.println("Não há mais pedidos!");
 	}
