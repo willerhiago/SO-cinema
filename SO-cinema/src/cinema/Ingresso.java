@@ -14,7 +14,7 @@ public class Ingresso {
 	
 	
 	public String getPoltrona() {
-		return "Poltrona: " + getFileira()+" "+ " " + getCadeira(); 
+		return "Poltrona: " + (getFileira()+1) +" "+ " " + (getCadeira()+1); 
 	}
 	
 	public void vendido() {
