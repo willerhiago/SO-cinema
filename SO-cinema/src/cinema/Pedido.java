@@ -15,12 +15,6 @@ public class Pedido {
 		this.tempo = tempo;
 		this.ingresso = new Ingresso(fileira,cadeira);
 	}
-	
-	
-	public int executaTempo() {
-		count++;
-		return count;
-	}
 
 	public String toString(){
 		return "Tipo: " + this.tipo + " " + ingresso.getPoltrona() +" Tempo: "+this.tempo;
