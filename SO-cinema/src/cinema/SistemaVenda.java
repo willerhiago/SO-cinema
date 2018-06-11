@@ -22,7 +22,6 @@ public class SistemaVenda {
 			int fileira = pedido.getIngresso().getFileira();
 			int cadeira = pedido.getIngresso().getCadeira();
 			
-			boolean result = false;
 			boolean aprovado = false;
 			
 			switch(pedido.getTipo()) {
@@ -31,12 +30,14 @@ public class SistemaVenda {
 					sala.consultaAssento(fileira,cadeira); 
 					break;
 					
-				case 2: //---------------------------------  Consulta, Reserva e n„o compra
+				case 2: //---------------------------------  Consulta, Reserva e n√£o compra
 					
-					result = sala.reservaAssento(fileira, cadeira);
+					aprovado = sala.reservaAssento(fileira, cadeira);
 					Thread.currentThread().sleep(pedido.getTempo());
-					pedido.pedidoNegado(fileira, cadeira); 
-					pedidosNegados.add(pedido);
+					if(!aprovado){
+						pedido.pedidoNegado(fileira, cadeira); 
+						pedidosNegados.add(pedido);
+					}
 					sala.retiraReserva(fileira, cadeira); 
 					
 					
@@ -44,11 +45,8 @@ public class SistemaVenda {
 					
 				case 3: //-------------------------------------- Consulta, Reserva e compra
 					
-					result = sala.reservaAssento(fileira, cadeira);
+					aprovado = sala.reservaAssento(fileira, cadeira);
 					Thread.currentThread().sleep(pedido.getTempo());
-					if(result) {
-						aprovado = true;
-					}
 					if(aprovado) {
 						pedido.pedidoAprovado(fileira, cadeira); 
 						pedidosAprovados.add(pedido);
@@ -65,7 +63,7 @@ public class SistemaVenda {
 	
 	public void novoPedido() throws InterruptedException {
 		if(!pedidos.loteVazio()) vendeIngresso(pedidos.novoPedido());
-		else System.out.println("N„o h· mais pedidos!");
+		else System.out.println("N√£o h√° mais pedidos!");
 	}
 	
 	//------------------------------------Getters
